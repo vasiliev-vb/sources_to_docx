@@ -25,7 +25,7 @@ $ sources_to_docx.py --input *.txt
                      --code_style 'My_code_style'
 ```
 
-Use .docx file as reference, apply code style and print code instead of paragraph with text '<CODE>':
+Use .docx file as reference, apply code style and print code instead of paragraph with text '\<CODE\>':
 ```
 $ sources_to_docx.py --input *.txt
                      --output document_with_code_listings.docx
