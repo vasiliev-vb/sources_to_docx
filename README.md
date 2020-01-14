@@ -45,8 +45,8 @@ $ sources_to_docx.py --input *.txt
                      --heading_style 'Heading 3'
                      --text_style 'My_text_style'
                      --code_style 'My_code_style'
-                     --file_list_description 'Library {}'
-                     --file_description 'File {}:'
+                     --file_list_description 'Library {file_list}'
+                     --file_description 'File {file_name}:'
 ```
 
 Usage of GOST 19.401-78 ("ЕСПД") template:
@@ -60,7 +60,7 @@ $ sources_to_docx.py --input *.txt
                      --code_style td_code
                      --text_style td_text
 
-                     --file_list_description 'Подпрограмма {}'
-                     --file_description 'Исходный модуль {}:'
+                     --file_list_description '{file_list}'
+                     --file_description 'Исходный модуль {file_name_noext}, файл {file_name}:'
 ```
 

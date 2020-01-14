@@ -16,20 +16,24 @@ def modify_document(d, file_lists, args):
 
     p = None
     for file_list in file_lists:
-        # insert page break after each paragraph except last one
-        if p is not None:
+        ## insert page break after each paragraph except last one
+        if args.heading_page_break and p is not None:
             run = p.add_run()
             run.add_break(docx.enum.text.WD_BREAK.PAGE)
 
         if args.with_headings:
-            p = add_paragraph(args.file_list_description.format(os.path.splitext(file_list)[0]))
+            p = add_paragraph(args.file_list_description.format(file_list = os.path.splitext(os.path.basename(file_list))[0]))
             p.style = args.heading_style
         with open(file_list,'r') as file_list_content:
             for file_name in file_list_content:
                 file_name = file_name.strip()
-                p = add_paragraph(args.file_description.format(os.path.basename(file_name)))
+                file_name_base = os.path.basename(file_name)
+                file_name_noext = os.path.splitext(file_name_base)[0]
+                p = add_paragraph(args.file_description.format(file_name = file_name_base, file_name_noext = file_name_noext))
                 p.style = args.text_style
                 with open(file_name,'r') as file_content:
+                    if args.verbose:
+                        print('Inserting {}'.format(file_name))
                     p = add_paragraph(file_content.read())
                     p.style = args.code_style
     if codep:
@@ -50,11 +54,13 @@ if __name__ == '__main__':
                                                                              
     parser.add_argument('--with_headings',         action='store_true',      help='Print headings for files')
     parser.add_argument('--heading_style',         default='Heading 1',      help='Style for text')
+    parser.add_argument('--heading_page_break',    action='store_true',      help='Add page break between headings')
                                                                              
     parser.add_argument('--text_style',            default='Normal',         help='Style for text')
     parser.add_argument('--code_style',            default='Normal',         help='Style for code')
                                                                              
     parser.add_argument('--print_styles',          action='store_true',      help='Print styles available in template')
+    parser.add_argument('--verbose','-v',          action='store_true',      help='Print various information')
 
     args = parser.parse_args()
 
