@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import argparse
 import docx
 import os
@@ -49,8 +49,8 @@ if __name__ == '__main__':
 
     parser.add_argument('--code_place_mark',       default='<CODE>',         help='Paragraph with this mark will be replaced by code')
                                                                              
-    parser.add_argument('--file_list_description', default='{}',             help='Description of file list')
-    parser.add_argument('--file_description',      default='{}:',            help='Description of file')
+    parser.add_argument('--file_list_description', default='{file_list}',    help='Description of file list')
+    parser.add_argument('--file_description',      default='{file_name}:',   help='Description of file')
                                                                              
     parser.add_argument('--with_headings',         action='store_true',      help='Print headings for files')
     parser.add_argument('--heading_style',         default='Heading 1',      help='Style for text')
